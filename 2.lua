@@ -1,6 +1,6 @@
 
 --getgenv().WishList = {"Weedle","poop","fart"} 
---getgenv().Webhook = "https://webhook.lewisakura.moe/api/webhooks/1081794713981567046/nbqCSVDd3tge_DuHsmZl7sKQiOzsHwTLrydpGH1chsNc2RUmUdNFpEtNmnY1u844N3Mt"
+--getgenv().Webhook = "https://discord.com/api/webhooks/1081794713981567046/nbqCSVDd3tge_DuHsmZl7sKQiOzsHwTLrydpGH1chsNc2RUmUdNFpEtNmnY1u844N3Mt"
 
 
 
@@ -276,25 +276,25 @@ for _, player in pairs(game:GetService('Players'):GetPlayers()) do
 --[[--]]
 
 --[[--]] -- value 
-local value = "nil"
-if(game.Players.LocalPlayer.AccountAge >= 100) then
-value = game:HttpGet("https://www.rolimons.com/playerapi/player/"..game.Players.LocalPlayer.UserId)
-s = value
-i, j = string.find(s, "value")
-x = string.sub(s,i,j+9)
-value = x
-end
+--local value = "nil"
+--if(game.Players.LocalPlayer.AccountAge >= 100) then
+--value = game:HttpGet("https://www.rolimons.com/playerapi/player/"..game.Players.LocalPlayer.UserId)
+--s = value
+--i, j = string.find(s, "value")
+--x = string.sub(s,i,j+9)
+--value = x
+--end
 --[[--]]
 
 --[[--]] -- recent average price
-local rap = "nil"
-if(game.Players.LocalPlayer.AccountAge >= 100) then 
-rap = game:HttpGet("https://www.rolimons.com/playerapi/player/"..game.Players.LocalPlayer.UserId)
-t = rap
-o, k = string.find(s, "rap")
-y = string.sub(t,o,k+9)
-rap = y
-end
+--local rap = "nil"
+--if(game.Players.LocalPlayer.AccountAge >= 100) then 
+--rap = game:HttpGet("https://www.rolimons.com/playerapi/player/"..game.Players.LocalPlayer.UserId)
+--t = rap
+--o, k = string.find(s, "rap")
+--y = string.sub(t,o,k+9)
+--rap = y
+--end
 --[[--]]
 
 --[[--]] -- headshot thumbnail
