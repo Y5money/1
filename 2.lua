@@ -1,13 +1,12 @@
 
 --getgenv().WishList = {"Weedle","poop","fart"} 
 --getgenv().Webhook = "https://discord.com/api/webhooks/1077265651233726574/QOiTC11CbBk6WEAlJRNyQyP_cf8idOQM9FoWW2B3ameRF1oupVZmF7za27BKRXoFPOf1"
-
 --//Global Variables
 getgenv().AutoFinder = false
 getgenv().GetVariations = false
 getgenv().GetShiny = false
 getgenv().NoClip = false
-getgenv().AutoFinderDelay = 0
+getgenv().AutoFinderDelay = 3
 getgenv().WebHookNotify = false
 getgenv().InfRepel = false
 getgenv().FishingMode = false 
@@ -643,7 +642,7 @@ local Toggle = Section:CreateToggle('Get Variations 🧬', false, Color3.fromRGB
     GetVariations = Value
 end)
  
-local AutoFinderDelayTextbox;AutoFinderDelayTextBox = Section:CreateTextbox('Finder Delay ⏱️', '0.0', function(Value)
+local AutoFinderDelayTextbox;AutoFinderDelayTextBox = Section:CreateTextbox('Finder Delay ⏱️', '3.0', function(Value)
     if typeof(tonumber(Value)) ~= "number" then
         return
     end
