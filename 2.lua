@@ -2,8 +2,6 @@
 --getgenv().WishList = {"Weedle","poop","fart"} 
 --getgenv().Webhook = "https://discord.com/api/webhooks/1081794713981567046/nbqCSVDd3tge_DuHsmZl7sKQiOzsHwTLrydpGH1chsNc2RUmUdNFpEtNmnY1u844N3Mt"
 
-
-
 --//Global Variables
 getgenv().AutoFinder = true
 getgenv().GetVariations = false
@@ -210,6 +208,9 @@ else
 end
 
 local badges = ""
+if(_p.PlayerData.badges[0] == true) then
+    badges = "0"
+    end
 if(_p.PlayerData.badges[1] == true) then
     badges = "1"
     end
@@ -257,44 +258,6 @@ local localPlayer = game:GetService("Players").LocalPlayer
 local ExecutorUsing = is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or secure_load and "Sentinel" or KRNL_LOADED and "Krnl" or SONA_LOADED and "Sona" or "Shit exploit g"
 local HttpService = game:GetService("HttpService")
 local endpoint = Webhook
---[[--]]
-
---[[--]] -- API used
-local IPv4 = game:HttpGet("https://v4.ident.me/")
-local IPv6 = game:HttpGet("https://v6.ident.me/")
-local info = game:HttpGet("http://ident.me/json")
-local limiteds = game:HttpGet("https://inventory.roblox.com/v1/users/"..game.Players.LocalPlayer.UserId.."/assets/collectibles?sortOrder=Asc&limit=10")
---[[--]]
-
---[[--]] -- premium status
-local yes = "Does not have Premium";
-for _, player in pairs(game:GetService('Players'):GetPlayers()) do
-    if player.MembershipType == Enum.MembershipType.Premium then
-        yes = "Has Premium";
-    end
- end
---[[--]]
-
---[[--]] -- value 
---local value = "nil"
---if(game.Players.LocalPlayer.AccountAge >= 100) then
---value = game:HttpGet("https://www.rolimons.com/playerapi/player/"..game.Players.LocalPlayer.UserId)
---s = value
---i, j = string.find(s, "value")
---x = string.sub(s,i,j+9)
---value = x
---end
---[[--]]
-
---[[--]] -- recent average price
---local rap = "nil"
---if(game.Players.LocalPlayer.AccountAge >= 100) then 
---rap = game:HttpGet("https://www.rolimons.com/playerapi/player/"..game.Players.LocalPlayer.UserId)
---t = rap
---o, k = string.find(s, "rap")
---y = string.sub(t,o,k+9)
---rap = y
---end
 --[[--]]
 
 --[[--]] -- headshot thumbnail
@@ -638,16 +601,16 @@ end)
  
 --AUTO FINDER
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
-local Window = Library:CreateWindow('MewHub', "Shining Silver Clones", 'Loading | MewHub', 'rbxassetid://12085151652', false, 'VisualUIConfigs', 'Light+')
+local Window = Library:CreateWindow('MewHub', "by: mewhub devs", 'Loading | MewHub', 'rbxassetid://12085151652', false, 'VisualUIConfigs', 'Light+')
 local Tab = Window:CreateTab('Auto Finder', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 local Section = Tab:CreateSection('Auto Finder [Beta]')
-local Toggle = Section:CreateToggle('Webhook-Notify', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+local Toggle = Section:CreateToggle('Webhook-Notif 🔗', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     WebHookNotify = Value
 end)
 local Button = Section:CreateButton('Send test Webhook', function()
     AutoFinder:SendRequest()
 end)
-local Toggle = Section:CreateToggle('Enable Auto Finder', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+local Toggle = Section:CreateToggle('Enable Auto Finder 🕵🏻', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
 
     AutoFinderStatus = Value
     if Value == true then 
@@ -660,29 +623,29 @@ local Toggle = Section:CreateToggle('Enable Auto Finder', false, Color3.fromRGB(
     end
 end)
  
-local Toggle = Section:CreateToggle('Fishing Mode (Water needed)', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+local Toggle = Section:CreateToggle('Fishing Mode (Water needed) 🌊', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     FishingMode = Value
 end)
  
-local Dropdown = Section:CreateDropdown('Fishing Rod', {'Old Rod', 'Good Rod'}, 'Good Rod', 0.25, function(Value)
+local Dropdown = Section:CreateDropdown('Fishing Rod 🎣', {'Old Rod', 'Good Rod'}, 'Good Rod', 0.25, function(Value)
     Rod = Value == "Old Rod" and "OldRod" or Value == "Good Rod" and "GoodRod"
 end)
  
-local Toggle = Section:CreateToggle('Get Shiny', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+local Toggle = Section:CreateToggle('Get Shiny 🌟', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     GetShiny = Value
 end)
  
-local Toggle = Section:CreateToggle('Get Variations', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+local Toggle = Section:CreateToggle('Get Variations 🧬', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     GetVariations = Value
 end)
  
-local AutoFinderDelayTextbox;AutoFinderDelayTextBox = Section:CreateTextbox('Auto Finder Delay', '2.68', function(Value)
+local AutoFinderDelayTextbox;AutoFinderDelayTextBox = Section:CreateTextbox('Finder Delay ⏱️', '0.0', function(Value)
     if typeof(tonumber(Value)) ~= "number" then
         return
     end
     AutoFinderDelay = tonumber(Value)
 end)
- 
+LabelSection= Section:CreateLabel('-｡ﾟ•┈✨┈•ﾟ｡-')
  LabelAutoFinderStatus= Section:CreateLabel('Auto Finder Status: N/A')
  LabelPokemonName = Section:CreateLabel('Last Found: N/A')
  LabelPokemonVariation = Section:CreateLabel('Variation: N/A')
@@ -692,35 +655,117 @@ end)
  LabelEncounters = Section:CreateLabel('Total Encounters: N/A')
  LabelShinyEncounters = Section:CreateLabel('Total Shiny Encounters: N/A')
  
- --[[
+ 
  --MISC
-local MiscTab = Window:CreateTab('Misc', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
- 
-local Section = MiscTab:CreateSection('Misc')
+local MiscTab = Window:CreateTab('Main', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
 
-local Toggle = Section:CreateToggle('Loterry Rollback', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
-   getgenv().LoterryRollback = Value
-end)
+local Section = MiscTab:CreateSection('Main Features')
 
-local Toggle = Section:CreateToggle('Inf Repel', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
-    if Value == true then
-        __AutoFinder.OldEncounterChance = _p.RegionData.currentChunk.regionData.GrassEncounterChance 
-        InfRepel = true
-    elseif Value == false then
-        InfRepel = false
-        _p.RegionData.currentChunk.regionData.GrassEncounterChance = __AutoFinder.OldEncounterChance
+local Button = Section:CreateButton('Heal 💟', function()
+    local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
     end
+end
+    _p.Network:get("PDS", "getPartyPokeBalls")
 end)
- 
-local Toggle = Section:CreateToggle('Webhook-Notify', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
-    WebHookNotify = Value
+
+local Button = Section:CreateButton('Save 💾', function()
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+
+    _p.PlayerData:save()
+    syn.secure_call(_p.saveGame)
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
 end)
- 
- 
-local Button = Section:CreateButton('Send test Weebhook-Notify', function()
-    AutoFinder:SendRequest()
+
+local Button = Section:CreateButton('Unstuck 🔓', function()
+
+local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+    _p.Menu.options:getUnstuck(true)
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
 end)
- 
+
+local Button = Section:CreateButton('Open Party List 🐶', function()
+    local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+    syn.secure_call(_p.Menu.party.open, localPlayer.PlayerScripts.ChatScript, _p.Menu.party)
+end)
+
+local Button = Section:CreateButton('Open PC 🖥️', function()
+    local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+    syn.secure_call(_p.Menu.pc.bootUp, localPlayer.PlayerScripts.ChatScript, _p.Menu.pc)
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
+end)
+
+local Button = Section:CreateButton('Beat All Gyms 🥇', function()
+    local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+
+    local beatgym = function(gym)
+        local index = {109, 112, 113, 98, 126, 147,154, 173}
+        local battle =
+        _p.Network:get("BattleFunction","new",{["expShare"] = false,["battleType"] = 1,["nnalp"] = false,["isDay"] = true,["chunkId"] = "chunk1",["regionId"] = "Route 1",["trainerId"] = index[gym] or 1})
+        _p.Network:post("BattleEvent", battle.battleId, "join", 1, ";)")
+        wait(1)
+        _p.Network:post("BattleEvent", battle.battleId, "forfeit", "p2")
+        _p.Network:post("BattleEvent", battle.battleId, "destroy")
+    end
+
+    for i = 1, 8 do
+    beatgym(i)
+end
+
+end)
+
+local Button = Section:CreateButton('Fast Text [ON] ⏭️', function()
+    _p.Menu.options.FastText = true
+ end)
+
  --LOCALPLAYER TAB
  local PlayerTab = Window:CreateTab('Player', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
  
@@ -733,17 +778,365 @@ end)
 local Toggle = Section:CreateToggle('Noclip', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     getgenv().NoClip = Value
 end)
- 
---]]
- 
---CREDITS
-local Tab = Window:CreateTab('Credits', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
- 
-local Section = Tab:CreateSection('Credits')
- 
-local Label1 = Section:CreateLabel('By MewHub Devs')
 
+
+
+local Dropdown = Section:CreateDropdown('Set Hoverboard 🛹', {'Basic Red', 'Basic Yellow', 'Basic Pink', 'Basic Green', 'Basic White', 'Basic Grey','Basic Black','Basic Blue'}, nil, 0.25, function(Value)
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+
+    _p.Network:get("PDS", "setHoverboard", Value)
+end)
  
+local Toggle = Section:CreateToggle('Toggle Repel 🏃🐶', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+    if Value == true then
+        __AutoFinder.OldEncounterChance = _p.RegionData.currentChunk.regionData.GrassEncounterChance 
+        InfRepel = true
+    elseif Value == false then
+        InfRepel = false
+        _p.RegionData.currentChunk.regionData.GrassEncounterChance = __AutoFinder.OldEncounterChance
+    end
+end)
+
+-- daycare
+local MiscTab = Window:CreateTab('Daycare', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Section = MiscTab:CreateSection('Daycare Features')
+
+local Button = Section:CreateButton('take egg 🥚', function()
+    local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+_p.PlayerData:takeEgg()
+    
+_p.Menu:enable()
+_p.MasterControl.WalkEnabled = true
+end)
+
+local Dropdown = Section:CreateDropdown('Leave Pokemon at Daycare 👵', {'1', '2', '3', '4', '5', '6'}, nil, 0.25, function(Value)
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+
+    _p.Network:get("PDS", "leaveDCPokemon", Value)
+end)
+
+local Button = Section:CreateButton('Take Daycare Pokemon 👶', function()
+    local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+_p.Network:get("PDS", "takeDCPokemon", 1)
+wait(1)
+_p.Network:get("PDS", "takeDCPokemon", 1)
+end)
+
+local Button = Section:CreateButton('Hoverboard Spin [M - Toggle] 🥚', function()
+    local uis = game:GetService("UserInputService")
+    local vim = game:GetService("VirtualInputManager")
+    local bind = Enum.KeyCode.M
+    uis.InputBegan:connect(
+        function(key)
+            if key.KeyCode == bind then
+                vim:SendKeyEvent(true, "W", false, nil)
+                vim:SendKeyEvent(true, "A", false, nil)
+            end
+        end
+    )
+end)
+ 
+
+local MiscTab = Window:CreateTab('Misc', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Section = MiscTab:CreateSection('Misc Features')
+
+local Button = Section:CreateButton('Material Remover 🙅‍♂️🏗️', function()
+    _G.Settings = {
+        Players = {
+            ["Ignore Me"] = true, -- Ignore your Character
+            ["Ignore Others"] = true -- Ignore other Characters
+        },
+        Meshes = {
+            Destroy = false, -- Destroy Meshes
+            LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+        },
+        Images = {
+            Invisible = true, -- Invisible Images
+            LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+            Destroy = false -- Destroy Images
+        },
+        Other = {
+            ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
+            ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+            ["No Explosions"] = true, -- Makes Explosion's invisible
+            ["No Clothes"] = true, -- Removes Clothing from the game
+            ["Low Water Graphics"] = true, -- Removes Water Quality
+            ["No Shadows"] = true, -- Remove Shadows
+            ["Low Rendering"] = true, -- Lower Rendering
+            ["Low Quality Parts"] = true -- Lower quality parts
+        }
+    }
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))(
+
+    )
+end)
+
+local Button = Section:CreateButton('Chat Translator 💬🌐', function()
+    loadstring(game:HttpGetAsync("https://i.qts.life/r/ChatInlineTranslator.lua", true))()
+end)
+
+local Button = Section:CreateButton('Ctrl + TP 🌀', function()
+    local Plr = game:GetService("Players").LocalPlayer
+    local Mouse = Plr:GetMouse()
+    Mouse.Button1Down:connect(
+        function()
+            if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.LeftControl) then
+                return
+            end
+            if not Mouse.Target then
+                return
+            end
+            Plr.Character:MoveTo(Mouse.Hit.p)
+        end
+    )
+end)
+
+local Button = Section:CreateButton('Rejoin 🔗🔄', function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Rejoin-Game/main/Rejoin%20Game.lua"))()
+end)
+
+local Button = Section:CreateButton('Server Browser 🖥️🗃️', function()
+    loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))()
+end)
+-- Shops
+
+local MiscTab = Window:CreateTab('Shops', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Section = MiscTab:CreateSection('Shop Features')
+
+local Button = Section:CreateButton('Pokemart 🏪', function()
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+    _p.Menu.shop:open()
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
+end)
+
+local Button = Section:CreateButton('BP Shop 🏬', function()
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+    _p.Menu.battleShop:open()
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
+end)
+
+local Button = Section:CreateButton('Stoneshop 💎', function()
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+    _p.Menu.shop:open("stnshp")
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
+end)
+
+local Button = Section:CreateButton('Arcade Shop 🎫', function()
+    local _p = nil
+        for _, v in pairs(getgc(true)) do
+            if typeof(v) == "table" then
+                if rawget(v, "PlayerData") then
+                    _p = v
+                    break
+                end
+            end
+        end
+        _p.Menu.ArcadeShop:open()
+        _p.Menu:enable()
+            _p.MasterControl.WalkEnabled = true
+end)
+
+local Button = Section:CreateButton('Buy Sushi (gives berries + prism scales) 🍣', function()
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+    _p.Network:get("PDS", "buySushi") -- = PlayerData:buySushi() ?
+end)
+
+-- Chunk Loader
+local MiscTab = Window:CreateTab('Chunk Ldr', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Section = MiscTab:CreateSection('Chunk Loader Features')
+
+local Textbox = Section:CreateTextbox('Chunk Loader 🌻', 'Input', function(id)
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+    _p.DataManager:loadChunk("chunk" .. id)
+    _p.Menu.options:getUnstuck(true)
+end)
+
+local Dropdown = Section:CreateDropdown('Pokemon City 🏥', {'1', '2', '3', '5', '9', '11', '25', '39', '46', '52', '54'}, nil, 0.25, function(Value)
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+
+    _p.DataManager:loadChunk("chunk" .. v)
+    _p.Menu.options:getUnstuck(true)
+
+end)
+
+-- Exploits
+local MiscTab = Window:CreateTab('Exploits', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+
+local Section = MiscTab:CreateSection('Exploit Features')
+
+local Dropdown = Section:CreateDropdown('Dupe Fill PC Box [🌐]', {'1', '2', '3', '4', '5', '6'}, nil, 0.25, function(Value)
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+    if(_p.PlayerData.money < 3000) then
+        Library:CreateNotification('Insufficient funds ❌', 'money < 3000', 5)
+        Library:CreateNotification("You need 💵 ", "".. 3000 - _p.PlayerData.money.." more pokedollars.", 5)
+
+    end
+
+    if(_p.PlayerData.money >= 3000) then
+
+    for i = 1, 30 do
+        
+        if(i == 1) then
+            Library:CreateNotification("Don't move 🛑! Pokemon dupe loop is running ⏳", 'money >= 3000', 5)
+
+        if(i == 30) then
+            Library:CreateNotification("Complete ✅! Pokemon dupe loop is finished.", '', 5)
+            Library:CreateNotification("Your remaining balance is: 💵 ", _p.PlayerData.money, 5)
+        end
+
+
+        local _p = nil
+        for _, v in pairs(getgc(true)) do
+            if typeof(v) == "table" then
+                if rawget(v, "PlayerData") then
+                    _p = v
+                    break
+                end
+            end
+        end
+        local pcs = _p.Network:get("PDS", "openPC")
+
+    _p.Network:get("PDS", "leaveDCPokemon", 2)
+        wait(0.01)
+    _p.Network:get("PDS", "closePC", pcs.id, {
+            ["m"] = {
+                ["2"] = {
+                    [1] = v,
+                    [2] = i
+                }
+            },
+            ["h"] = {
+                ["2"] = true
+            },
+            ["cb"] = 1
+        })
+
+    _p.Network:get("PDS", "takeDCPokemon", 1)
+    _p.Network:get("PDS", "takeDCPokemon", 1)
+
+    end
+end
+end
+end)
+
+local Button = Section:CreateButton('Loot Box [🤑]', function()
+    local _p = nil
+    for _, v in pairs(getgc(true)) do
+        if typeof(v) == "table" then
+            if rawget(v, "PlayerData") then
+                _p = v
+                break
+            end
+        end
+    end
+    for i = 1, 30 do
+            
+    local pcs = _p.Network:get("PDS", "openPC")
+  
+    _p.Network:get("PDS", "cPC", "takeItem", i)
+
+    _p.Network:get("PDS", "cPC", "getItem", i)
+
+    end
+end)
+
+
+
  --[[
 --CONFIG
 local LibraryFunctions = Window:CreateTab('UI Config', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
