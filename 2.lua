@@ -1,4 +1,4 @@
-
+--[[
 --getgenv().WishList = {"Weedle"} 
 --getgenv().Webhook = "https://discord.com/api/webhooks/1077265651233726574/QOiTC11CbBk6WEAlJRNyQyP_cf8idOQM9FoWW2B3ameRF1oupVZmF7za27BKRXoFPOf1"
 --//Global Variables
