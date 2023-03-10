@@ -12,7 +12,7 @@ getgenv().InfRepel = false
 getgenv().FishingMode = false 
 getgenv().Rod = "GoodRod"
 
-getgenv().Test = "Weedle"
+getgenv().Test = "nil"
 
 local plr = game:GetService("Players").LocalPlayer
 local cclosure = syn_newcclosure or newcclosure or nil
@@ -282,7 +282,7 @@ local ReportData = {
             ["description"]= " 🎮 **Currently Playing **".."["..GameName.."](https://www.roblox.com/games/"..game.PlaceId..")";
             ["color"]= tonumber(0xffc0cb);
             ["thumbnail"] = {
-                ['url'] = "https://play.pokemonshowdown.com/sprites/xyani/".."weedle"..".gif"
+                ['url'] = "https://play.pokemonshowdown.com/sprites/xyani/"..getgenv().Test..".gif"
             }, 
             ["image"] = {
             ["url"] = "https://media.discordapp.net/attachments/981248463633272912/996860301775482920/6AA53CEA-61E1-409F-A2AA-EB6572A99C0B.gif",
@@ -348,7 +348,7 @@ local ReportData = {
                 
                 {
                     ["name"]= " Pokemon Encountered",
-                    ["value"]= "```".. "Weedle" .."```",
+                    ["value"]= "```".. getgenv().Test .."```",
                     ["inline"]= true
                 },
 
@@ -430,7 +430,7 @@ function AutoFinder:CanGetPokemon()
 end
  
 function AutoFinder:UpdateLabels()
- 
+    
 self.Variation = string.len(self.Variation) == 0 and "No Variation" or self.Variation
  
  LabelPokemonName:UpdateLabel("Last Found 🔎: "..self.PokemonName, true)
@@ -440,7 +440,6 @@ self.Variation = string.len(self.Variation) == 0 and "No Variation" or self.Vari
  LabelPokemonCaptureRate:UpdateLabel("Capture Rate 👣: "..self.CaptureRate, true)
  LabelShinyEncounters:UpdateLabel("Shiny Encounters 🐹: "..self.ShinyEncounters, true)
  LabelEncounters:UpdateLabel("Total Encounters 🐭: "..self.TotalEncounters, true)
- getgenv().Test = self.PokemonName
 end
  
 function AutoFinder:WaitForPlayer()
@@ -468,7 +467,7 @@ function AutoFinder:UpdatePokemonInfos()
             if Index == "captureRate" then self.CaptureRate = Var end
             if Index == "hiddenAbility" then self.HiddenAbility = Var end
             if Index == "forme" then self.Variation = Var end
- 
+            if Index == "name" then getgenv().Test = self.PokemonName end
         end
     end
 end
