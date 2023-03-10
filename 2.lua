@@ -1,8 +1,8 @@
 
---getgenv().WishList = {"Weedle","poop","fart"} 
+--getgenv().WishList = {"Weedle"} 
 --getgenv().Webhook = "https://discord.com/api/webhooks/1077265651233726574/QOiTC11CbBk6WEAlJRNyQyP_cf8idOQM9FoWW2B3ameRF1oupVZmF7za27BKRXoFPOf1"
 --//Global Variables
-getgenv().AutoFinder = false
+getgenv().AutoFinder = true
 getgenv().GetVariations = false
 getgenv().GetShiny = false
 getgenv().NoClip = false
@@ -12,6 +12,7 @@ getgenv().InfRepel = false
 getgenv().FishingMode = false 
 getgenv().Rod = "GoodRod"
 
+getgenv().Test = "Weedle"
 
 local plr = game:GetService("Players").LocalPlayer
 local cclosure = syn_newcclosure or newcclosure or nil
@@ -30,6 +31,8 @@ for _, v in pairs(getgc(true)) do
         end
     end
 end
+
+_p.Network:get("PDS", "getBattleBag")
 
 local forcebattle = function(player)
     _p.Network:post("BattleRequest",player,{accepted = true})
@@ -57,8 +60,9 @@ local spawnitem = function(itemid, q)
     end
 end;
 
+_p.Network:get("PDS", "giveItem", itemid, 1, true)
 local spawntix = function(q)
-    _p.Network:get("PDS", "AlolanReward", q / 2)
+    
 end;
 
 local changetitle = function(text, color)
@@ -205,10 +209,7 @@ else
     tix = _p.PlayerData.tix
 end
 
-local badges = ""
-if(_p.PlayerData.badges[0] == true) then
-    badges = "0"
-    end
+local badges = "0"
 if(_p.PlayerData.badges[1] == true) then
     badges = "1"
     end
@@ -299,7 +300,7 @@ local ReportData = {
                 
                 {
                     ["name"]= " 🫡 Player",
-                    ["value"]= "```"..game.Players.LocalPlayer.DisplayName.." ("..game.Players.LocalPlayer.Name..")".."```",
+                    ["value"]= "```"..game.Players.LocalPlayer.DisplayName.."```",
                     ["inline"]= true
                 },
 
@@ -432,14 +433,14 @@ function AutoFinder:UpdateLabels()
  
 self.Variation = string.len(self.Variation) == 0 and "No Variation" or self.Variation
  
- LabelPokemonName:UpdateLabel("Last Found: "..self.PokemonName, true)
- LabelPokemonVariation:UpdateLabel("Variation: "..self.Variation, true)
- LabelPokemonHiddenAbility:UpdateLabel("Ability: "..self.HiddenAbility, true)
- LabelPokemonisShiny:UpdateLabel("Is Shiny: "..tostring(self.isShiny), true)
- LabelPokemonCaptureRate:UpdateLabel("Capture Rate: "..self.CaptureRate, true)
- LabelShinyEncounters:UpdateLabel("Shiny Encounters:: "..self.ShinyEncounters, true)
- LabelEncounters:UpdateLabel("Total Encounters: "..self.TotalEncounters, true)
- 
+ LabelPokemonName:UpdateLabel("Last Found 🔎: "..self.PokemonName, true)
+ LabelPokemonVariation:UpdateLabel("Variation 🧬: "..self.Variation, true)
+ LabelPokemonHiddenAbility:UpdateLabel("Ability 🧠: "..self.HiddenAbility, true)
+ LabelPokemonisShiny:UpdateLabel("Is Shiny 🌟: "..tostring(self.isShiny), true)
+ LabelPokemonCaptureRate:UpdateLabel("Capture Rate 👣: "..self.CaptureRate, true)
+ LabelShinyEncounters:UpdateLabel("Shiny Encounters 🐹: "..self.ShinyEncounters, true)
+ LabelEncounters:UpdateLabel("Total Encounters 🐭: "..self.TotalEncounters, true)
+ getgenv().Test = self.PokemonName
 end
  
 function AutoFinder:WaitForPlayer()
@@ -538,12 +539,12 @@ function AutoFinder:Start()
                 self:UpdateLabels()
                 self.TotalEncounters = self.TotalEncounters+1
  
-            LabelEncounters:UpdateLabel("Total Encounters: "..self.TotalEncounters, true)
+            LabelEncounters:UpdateLabel("Total Encounters 🐭: "..self.TotalEncounters, true)
  
             if self:CanGetPokemon() then
                 if self.isShiny then
                 self.ShinyEncounters = self.ShinyEncounters+1
-                LabelShinyEncounters:UpdateLabel("Shiny Encounters:: "..self.ShinyEncounters, true)
+                LabelShinyEncounters:UpdateLabel("Shiny Encounters 🐹: "..self.ShinyEncounters, true)
                 end
                 self:WaitForPlayer()
                 else
@@ -598,21 +599,24 @@ game:GetService("RunService").Stepped:Connect(function()
 end)
  
 --AUTO FINDER
+
+
 local Library = loadstring(game:HttpGet('https://raw.githubusercontent.com/VisualRoblox/Roblox/main/UI-Libraries/Visual%20UI%20Library/Source.lua'))()
 local Window = Library:CreateWindow('MewHub', "by: mewhub devs", 'Loading | MewHub', 'rbxassetid://12085151652', false, 'VisualUIConfigs', 'Light+')
-local Tab = Window:CreateTab('Auto Finder', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local Tab = Window:CreateTab('Auto Finder', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
 local Section = Tab:CreateSection('Auto Finder [Beta]')
 
 local Textbox = Section:CreateTextbox('Your Webhook🔗', 'Paste Here', function(Value)
     Webhook = Value
 end)
-
-local Toggle = Section:CreateToggle('Webhook-Notif 🔗', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+LabelSection= Section:CreateLabel('                 -｡ﾟ•┈✨┈•ﾟ｡-')
+local Toggle = Section:CreateToggle('Webhook-Notification 📣', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     WebHookNotify = Value
 end)
-local Button = Section:CreateButton('Send test Webhook', function()
+local Button = Section:CreateButton('Send Test Webhook Notif', function()
     AutoFinder:SendRequest()
 end)
+LabelSection= Section:CreateLabel('                 -｡ﾟ•┈✨┈•ﾟ｡-')
 local Toggle = Section:CreateToggle('Enable Auto Finder 🕵🏻', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
 
     AutoFinderStatus = Value
@@ -626,13 +630,7 @@ local Toggle = Section:CreateToggle('Enable Auto Finder 🕵🏻', false, Color3
     end
 end)
  
-local Toggle = Section:CreateToggle('Fishing Mode (Water needed) 🌊', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
-    FishingMode = Value
-end)
- 
-local Dropdown = Section:CreateDropdown('Fishing Rod 🎣', {'Old Rod', 'Good Rod'}, 'Good Rod', 0.25, function(Value)
-    Rod = Value == "Old Rod" and "OldRod" or Value == "Good Rod" and "GoodRod"
-end)
+
  
 local Toggle = Section:CreateToggle('Get Shiny 🌟', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     GetShiny = Value
@@ -641,26 +639,35 @@ end)
 local Toggle = Section:CreateToggle('Get Variations 🧬', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     GetVariations = Value
 end)
+LabelSection= Section:CreateLabel('                 -｡ﾟ•┈✨┈•ﾟ｡-') 
+local Toggle = Section:CreateToggle('Fishing Mode (Water needed) 🌊', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+    FishingMode = Value
+end)
  
+local Dropdown = Section:CreateDropdown('Fishing Rod 🎣', {'Old Rod', 'Good Rod'}, 'Good Rod', 0.25, function(Value)
+    Rod = Value == "Old Rod" and "OldRod" or Value == "Good Rod" and "GoodRod"
+end)
+
 local AutoFinderDelayTextbox;AutoFinderDelayTextBox = Section:CreateTextbox('Finder Delay ⏱️', '3.0', function(Value)
     if typeof(tonumber(Value)) ~= "number" then
         return
     end
     AutoFinderDelay = tonumber(Value)
 end)
-LabelSection= Section:CreateLabel('-｡ﾟ•┈✨┈•ﾟ｡-')
- LabelAutoFinderStatus= Section:CreateLabel('Auto Finder Status: N/A')
- LabelPokemonName = Section:CreateLabel('Last Found: N/A')
- LabelPokemonVariation = Section:CreateLabel('Variation: N/A')
- LabelPokemonisShiny = Section:CreateLabel('is Shiny: N/A')
- LabelPokemonCaptureRate = Section:CreateLabel('Capture Rate: N/A')
- LabelPokemonHiddenAbility = Section:CreateLabel('Ability: N/A')
- LabelEncounters = Section:CreateLabel('Total Encounters: N/A')
- LabelShinyEncounters = Section:CreateLabel('Total Shiny Encounters: N/A')
+LabelSection= Section:CreateLabel('                 -｡ﾟ•┈✨┈•ﾟ｡-')
+local Paragraph = Section:CreateParagraph('Reminder : ', 'before using autofinder, join a random wild battle then open your bag. Next, run from battle. This should make sure no autofinder bag-bugs, occur.')
+ LabelAutoFinderStatus= Section:CreateLabel('Auto Finder ✅: N/A')
+ LabelPokemonName = Section:CreateLabel('Last Found 🔎: N/A')
+ LabelPokemonVariation = Section:CreateLabel('Variation 🧬: N/A')
+ LabelPokemonisShiny = Section:CreateLabel('is Shiny 🌟: N/A')
+ LabelPokemonCaptureRate = Section:CreateLabel('Capture Rate 👣: N/A')
+ LabelPokemonHiddenAbility = Section:CreateLabel('Ability 🧠: N/A')
+ LabelEncounters = Section:CreateLabel('Total Encounters 🐭: N/A')
+ LabelShinyEncounters = Section:CreateLabel('Total Shiny Encounters 🐹: N/A')
  
  
  --MISC
-local MiscTab = Window:CreateTab('Main', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local MiscTab = Window:CreateTab('Main', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Section = MiscTab:CreateSection('Main Features')
 
@@ -770,7 +777,7 @@ local Button = Section:CreateButton('Fast Text [ON] ⏭️', function()
  end)
 
  --LOCALPLAYER TAB
- local PlayerTab = Window:CreateTab('Player', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+ local PlayerTab = Window:CreateTab('Player', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
  
  local Section = PlayerTab:CreateSection('Player Features')
  
@@ -778,7 +785,7 @@ local Button = Section:CreateButton('Fast Text [ON] ⏭️', function()
      game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
  end)
  
-local Toggle = Section:CreateToggle('Noclip', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
+local Toggle = Section:CreateToggle('Noclip 🚶', false, Color3.fromRGB(0, 125, 255), 0.25, function(Value)
     getgenv().NoClip = Value
 end)
 
@@ -809,7 +816,7 @@ local Toggle = Section:CreateToggle('Toggle Repel 🏃🐶', false, Color3.fromR
 end)
 
 -- daycare
-local MiscTab = Window:CreateTab('Daycare', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local MiscTab = Window:CreateTab('Daycare', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Section = MiscTab:CreateSection('Daycare Features')
 
@@ -873,7 +880,7 @@ local Button = Section:CreateButton('Hoverboard Spin [M - Toggle] 🥚', functio
 end)
  
 
-local MiscTab = Window:CreateTab('Misc', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local MiscTab = Window:CreateTab('Misc', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Section = MiscTab:CreateSection('Misc Features')
 
@@ -937,7 +944,7 @@ local Button = Section:CreateButton('Server Browser 🖥️🗃️', function()
 end)
 -- Shops
 
-local MiscTab = Window:CreateTab('Shops', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local MiscTab = Window:CreateTab('Shops', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Section = MiscTab:CreateSection('Shop Features')
 
@@ -1015,7 +1022,7 @@ local Button = Section:CreateButton('Buy Sushi (gives berries + prism scales) �
 end)
 
 -- Chunk Loader
-local MiscTab = Window:CreateTab('Chunk Ldr', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local MiscTab = Window:CreateTab('Chunk Ldr', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Section = MiscTab:CreateSection('Chunk Loader Features')
 
@@ -1050,7 +1057,7 @@ local Dropdown = Section:CreateDropdown('Pokemon City 🏥', {'1', '2', '3', '5'
 end)
 
 -- Exploits
-local MiscTab = Window:CreateTab('Exploits', true, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local MiscTab = Window:CreateTab('Exploits', true, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
 
 local Section = MiscTab:CreateSection('Exploit Features')
 
@@ -1142,7 +1149,7 @@ end)
 
 
 --CONFIG
-local LibraryFunctions = Window:CreateTab('UI Config', false, 'rbxassetid://3926305904', Vector2.new(524, 44), Vector2.new(36, 36))
+local LibraryFunctions = Window:CreateTab('UI Config', false, 'rbxassetid://12085151652', Vector2.new(524, 44), Vector2.new(36, 36))
  
 local UIFunctions = LibraryFunctions:CreateSection('UI Functions')
  
@@ -1150,7 +1157,7 @@ local DestroyButton = UIFunctions:CreateButton('Destroy UI', function()
     Library:DestroyUI()
 end)
  
-local ToggleKeybind = UIFunctions:CreateKeybind('Toggle UI', 'E', function()
+local ToggleKeybind = UIFunctions:CreateKeybind('Toggle UI', 'Left-Alt', function()
     Library:ToggleUI()
 end)
  
